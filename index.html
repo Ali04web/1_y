@@ -1427,16 +1427,24 @@
         justify-content: space-around;
         align-items: center;
         position: fixed;
-        bottom: 20px;
+        bottom: 24px;
         left: 20px;
         right: 20px;
-        background: rgba(17, 16, 16, 0.85);
-        backdrop-filter: blur(12px);
-        border: 1px solid var(--border);
+        background: rgba(10, 9, 8, 0.45);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
         border-radius: 100px;
         padding: 12px 16px;
         z-index: 999;
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.05);
+        transform: translateY(0);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .mob-nav.hidden {
+        transform: translateY(150%);
       }
 
       .mn-link {
@@ -1900,6 +1908,25 @@
     });
     const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); }); }, { threshold: 0.08 });
     document.querySelectorAll('.rr,.tli').forEach(el => obs.observe(el));
+
+    // Mobile Nav Scroll Logic
+    const mobNav = document.querySelector('.mob-nav');
+    let lastScrollY = window.scrollY;
+
+    window.addEventListener('scroll', () => {
+      if (window.innerWidth > 960) return;
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down
+        mobNav.classList.add('hidden');
+      } else {
+        // Scrolling up
+        mobNav.classList.remove('hidden');
+      }
+
+      lastScrollY = currentScrollY;
+    }, { passive: true });
   </script>
 </body>
 
