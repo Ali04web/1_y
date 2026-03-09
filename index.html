@@ -42,12 +42,21 @@
       /* coral, gold, and muted stay the same for accents */
     }
 
+    body.light-mode .wm {
+      -webkit-text-stroke: 1px rgba(10, 9, 8, 0.04);
+    }
+
     *,
     *::before,
     *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+    }
+
+    ::selection {
+      background: var(--coral);
+      color: #fff;
     }
 
     html {
@@ -1218,7 +1227,7 @@
     .btn-submit {
       padding: 16px 32px;
       background: var(--cream);
-      color: #0A0908;
+      color: var(--bg);
       font-family: var(--label);
       font-size: 0.68rem;
       letter-spacing: 0.2em;
@@ -1491,6 +1500,13 @@
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.05);
         transform: translateY(0);
         transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      body.light-mode .mob-nav {
+        background: rgba(248, 246, 240, 0.6);
+        border: 1px solid rgba(10, 9, 8, 0.08);
+        border-top: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0 8px 32px rgba(10, 9, 8, 0.08), inset 0 2px 4px rgba(255, 255, 255, 0.8);
       }
 
       .mob-nav.hidden {
