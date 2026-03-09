@@ -1515,20 +1515,32 @@
 
       .mn-left {
         display: flex;
-        gap: 16px;
+        justify-content: space-around;
+        flex: 1;
         align-items: center;
       }
 
       .mn-right {
         display: flex;
-        gap: 12px;
         align-items: center;
+        justify-content: center;
+        gap: 12px;
         padding-left: 12px;
         border-left: 1px solid rgba(255, 255, 255, 0.15);
       }
 
       body.light-mode .mn-right {
         border-left-color: rgba(10, 9, 8, 0.15);
+      }
+
+      .mn-pipe {
+        color: rgba(255, 255, 255, 0.15);
+        font-size: 1.2rem;
+        font-weight: 300;
+      }
+
+      body.light-mode .mn-pipe {
+        color: rgba(10, 9, 8, 0.15);
       }
 
       .mn-link {
@@ -2004,6 +2016,7 @@
         </svg>
         <span>LinkedIn</span>
       </a>
+      <span class="mn-pipe">|</span>
       <button class="theme-toggle" aria-label="Toggle Dark/Light Mode" style="padding:0">
         <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
