@@ -62,6 +62,7 @@
     html {
       scroll-behavior: smooth;
       overflow-x: hidden;
+      width: 100%;
       max-width: 100%;
     }
 
@@ -70,6 +71,8 @@
       color: var(--cream);
       font-family: var(--body);
       overflow-x: hidden;
+      width: 100%;
+      max-width: 100%;
       cursor: none;
       -webkit-font-smoothing: antialiased;
     }
@@ -524,6 +527,8 @@
       position: relative;
       z-index: 1;
       overflow: hidden;
+      width: 100%;
+      max-width: 100%;
       background: var(--coral);
       padding: 13px 0;
     }
@@ -1430,6 +1435,10 @@
         gap: 48px;
       }
 
+      .mkt-list {
+        grid-template-columns: 1fr;
+      }
+
       .mkt-big {
         font-size: clamp(2.5rem, 8vw, 5.5rem);
       }
@@ -1449,6 +1458,10 @@
           "form"
           "actions";
         gap: 40px;
+      }
+
+      .ct-form {
+        padding: 24px 20px;
       }
 
       .ct-head-container {
@@ -1499,11 +1512,12 @@
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-top: 1px solid rgba(255, 255, 255, 0.15);
         border-radius: 100px;
-        padding: 12px 16px;
+        padding: 12px 12px;
         z-index: 999;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.05);
         transform: translateY(0);
         transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        overflow: hidden;
       }
 
       body.light-mode .mob-nav {
@@ -1522,14 +1536,15 @@
         justify-content: space-around;
         flex: 1;
         align-items: center;
+        gap: 4px;
       }
 
       .mn-right {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 12px;
-        padding-left: 12px;
+        gap: 8px;
+        padding-left: 8px;
         border-left: 1px solid rgba(255, 255, 255, 0.15);
       }
 
