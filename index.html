@@ -12,6 +12,7 @@
     rel="stylesheet">
   <style>
     :root {
+      /* DARK MODE DEFAULTS */
       --bg: #0A0908;
       --s1: #111010;
       --s2: #181614;
@@ -27,6 +28,18 @@
       --display: 'Montserrat', sans-serif;
       --body: 'Lato', sans-serif;
       --label: 'Montserrat', sans-serif;
+    }
+
+    body.light-mode {
+      /* LIGHT MODE COLORS */
+      --bg: #F8F6F0;
+      --s1: #FFFFFF;
+      --s2: #F0EBE3;
+      --cream: #0A0908;
+      --faint: #D6CFC4;
+      --border: rgba(10, 9, 8, 0.09);
+      --border2: rgba(10, 9, 8, 0.15);
+      /* coral, gold, and muted stay the same for accents */
     }
 
     *,
@@ -153,14 +166,51 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .nlogo {
-      font-family: var(--display);
-      font-style: normal;
-      font-weight: 500;
-      font-size: 1.15rem;
-      letter-spacing: 0.04em;
+    body.light-mode nav {
+      background: rgba(248, 246, 240, 0.7);
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
       color: var(--cream);
-      opacity: .85;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.3s;
+      cursor: none;
+    }
+
+    .theme-toggle:hover {
+      color: var(--coral);
+    }
+
+    .theme-toggle svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: transform 0.5s ease;
+    }
+
+    body.light-mode .theme-toggle svg {
+      transform: rotate(180deg);
+    }
+
+    .sun-icon {
+      display: none;
+    }
+
+    body.light-mode .moon-icon {
+      display: none;
+    }
+
+    body.light-mode .sun-icon {
+      display: block;
     }
 
     .nlinks {
@@ -1490,14 +1540,29 @@
 
   <!-- NAV -->
   <nav>
-    <div class="nlogo">Yasir Naseem</div>
+    <div class="nstatus"><span class="ndot"></span>Available now</div>
     <div class="nlinks">
       <a href="#expertise">Skills</a>
       <a href="#experience">Journey</a>
       <a href="#markets">Markets</a>
       <a href="#contact">Contact</a>
     </div>
-    <div class="nstatus"><span class="ndot"></span>Available now</div>
+    <button class="theme-toggle" aria-label="Toggle Dark/Light Mode">
+      <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+      <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+    </button>
   </nav>
 
   <!-- HERO -->
@@ -1858,7 +1923,7 @@
 
   <footer>
     <div class="fl">Mohd Yasir Naseem</div>
-    <div class="fr">© 2025 · Performance Marketer · Lucknow, India</div>
+    <div class="fr">©2026· Performance Marketer · India</div>
   </footer>
 
   <!-- MOBILE NAV -->
@@ -1908,6 +1973,25 @@
     });
     const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); }); }, { threshold: 0.08 });
     document.querySelectorAll('.rr,.tli').forEach(el => obs.observe(el));
+
+    // Theme Toggle Logic
+    const themeToggle = document.querySelector('.theme-toggle');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    let isLightMode = localStorage.getItem('theme') === 'light' || (!prefersDark && !localStorage.getItem('theme'));
+
+    if (isLightMode) {
+      document.body.classList.add('light-mode');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('light-mode');
+      isLightMode = document.body.classList.contains('light-mode');
+      localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
+
+      // Animate the ring on click
+      ring.style.transform = `translate(-50%, -50%) scale(1.5)`;
+      setTimeout(() => ring.style.transform = `translate(-50%, -50%) scale(1)`, 150);
+    });
 
     // Mobile Nav Scroll Logic
     const mobNav = document.querySelector('.mob-nav');
