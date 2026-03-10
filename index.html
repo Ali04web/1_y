@@ -865,51 +865,70 @@
     /* ── MARKETS ── */
     #markets {
       background: var(--bg);
+      overflow-x: hidden;
     }
 
     .ml-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
     }
 
-    .mkt-list {
-      list-style: none;
+    .mkt-side {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .mkt-marquee {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      overflow: hidden;
+      display: flex;
+      padding: 24px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: rgba(10, 9, 8, 0.4);
+    }
+
+    body.light-mode .mkt-marquee {
+      background: rgba(248, 246, 240, 0.4);
+    }
+
+    .mkt-marquee-inner {
+      display: flex;
+      animation: mscroll 30s linear infinite;
+      white-space: nowrap;
+      gap: 40px;
+      padding-right: 40px;
     }
 
     .mkt-row {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 16px;
-      padding: 17px 0;
-      border-bottom: 1px solid var(--border);
       font-family: var(--body);
-      font-size: 0.88rem;
+      font-size: 0.95rem;
       color: var(--muted);
       transition: all .2s;
       cursor: default;
     }
 
-    .mkt-row:first-child {
-      border-top: 1px solid var(--border);
-    }
-
     .mkt-row:hover {
       color: var(--cream);
-      padding-left: 6px;
     }
 
     .mkt-flag {
-      font-size: 1.15rem;
+      font-size: 1.4rem;
       transition: transform .2s;
     }
 
     .mkt-row:hover .mkt-flag {
       transform: scale(1.15);
-    }
-
-    .mkt-nm {
-      flex: 1;
     }
 
     .mkt-badge {
@@ -926,12 +945,6 @@
     .mkt-row:hover .mkt-badge {
       border-color: var(--gold);
       color: var(--gold);
-    }
-
-    .mkt-side {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
     }
 
     .mkt-big {
@@ -1431,12 +1444,7 @@
       }
 
       .ml-layout {
-        grid-template-columns: 1fr;
-        gap: 48px;
-      }
-
-      .mkt-list {
-        grid-template-columns: 1fr;
+        gap: 32px;
       }
 
       .mkt-big {
@@ -1813,7 +1821,7 @@
         <div class="tli-where">BDevelopers · Remote</div>
         <div class="tli-role">Digital Marketing <em>Associate</em></div>
         <ul class="tli-pts">
-          <li>3-month internship in SEO — link building, on-page and off-page optimisation strategies.</li>
+          <li>3-month internship in SEO. Link building, on-page and off-page optimisation strategies.</li>
           <li>Built strong practical foundations in organic traffic growth and search engine principles.</li>
         </ul>
       </div>
@@ -1852,28 +1860,52 @@
       <div class="sh-rule"></div>
     </div>
     <div class="ml-layout">
-      <ul class="mkt-list rr">
-        <li class="mkt-row"><span class="mkt-flag">🇺🇸</span><span class="mkt-nm">United States</span><span
-            class="mkt-badge">E-Commerce</span></li>
-        <li class="mkt-row"><span class="mkt-flag">🇮🇹</span><span class="mkt-nm">Italy</span><span
-            class="mkt-badge">E-Commerce</span></li>
-        <li class="mkt-row"><span class="mkt-flag">🇸🇬</span><span class="mkt-nm">Singapore</span><span
-            class="mkt-badge">Lead Gen</span></li>
-        <li class="mkt-row"><span class="mkt-flag">🇲🇾</span><span class="mkt-nm">Malaysia</span><span
-            class="mkt-badge">Performance</span></li>
-        <li class="mkt-row"><span class="mkt-flag">🇹🇭</span><span class="mkt-nm">Thailand</span><span
-            class="mkt-badge">Performance</span></li>
-        <li class="mkt-row"><span class="mkt-flag">🇻🇳</span><span class="mkt-nm">Vietnam</span><span
-            class="mkt-badge">Performance</span></li>
-        <li class="mkt-row"><span class="mkt-flag">🇬🇧</span><span class="mkt-nm">United Kingdom</span><span
-            class="mkt-badge">Multi</span></li>
-        <li class="mkt-row"><span class="mkt-flag">🇮🇳</span><span class="mkt-nm">India</span><span
-            class="mkt-badge">Multi</span></li>
-      </ul>
       <div class="mkt-side rr">
         <div class="mkt-big">Campaigns that cross <b>borders.</b></div>
         <p class="mkt-body">From e-commerce brands in the USA and Italy to lead generation in Singapore — every market
           gets a tailored strategy, not a copy-paste approach. Trusted with high-stakes budgets worldwide.</p>
+      </div>
+
+      <div class="mkt-marquee rr">
+        <div class="mkt-marquee-inner">
+          <div class="mkt-row"><span class="mkt-flag">🇺🇸</span><span class="mkt-nm">United States</span><span
+              class="mkt-badge">E-Commerce</span></div>
+          <div class="mkt-row"><span class="mkt-flag">🇮🇹</span><span class="mkt-nm">Italy</span><span
+              class="mkt-badge">E-Commerce</span></div>
+          <div class="mkt-row"><span class="mkt-flag">🇸🇬</span><span class="mkt-nm">Singapore</span><span
+              class="mkt-badge">Lead Gen</span></div>
+          <div class="mkt-row"><span class="mkt-flag">🇲🇾</span><span class="mkt-nm">Malaysia</span><span
+              class="mkt-badge">Performance</span></div>
+          <div class="mkt-row"><span class="mkt-flag">🇹🇭</span><span class="mkt-nm">Thailand</span><span
+              class="mkt-badge">Performance</span></div>
+          <div class="mkt-row"><span class="mkt-flag">🇻🇳</span><span class="mkt-nm">Vietnam</span><span
+              class="mkt-badge">Performance</span></div>
+          <div class="mkt-row"><span class="mkt-flag">🇬🇧</span><span class="mkt-nm">United Kingdom</span><span
+              class="mkt-badge">Multi</span></div>
+          <div class="mkt-row"><span class="mkt-flag">🇮🇳</span><span class="mkt-nm">India</span><span
+              class="mkt-badge">Multi</span></div>
+          <div class="mkt-row"><span class="mkt-flag">🇦🇪</span><span class="mkt-nm">United Arab Emirates</span><span
+              class="mkt-badge">Multi</span></div>
+          <!-- duplicate block for infinite scroll -->
+          <div class="mkt-row" aria-hidden="true"><span class="mkt-flag">🇺🇸</span><span class="mkt-nm">United
+              States</span><span class="mkt-badge">E-Commerce</span></div>
+          <div class="mkt-row" aria-hidden="true"><span class="mkt-flag">🇮🇹</span><span
+              class="mkt-nm">Italy</span><span class="mkt-badge">E-Commerce</span></div>
+          <div class="mkt-row" aria-hidden="true"><span class="mkt-flag">🇸🇬</span><span
+              class="mkt-nm">Singapore</span><span class="mkt-badge">Lead Gen</span></div>
+          <div class="mkt-row" aria-hidden="true"><span class="mkt-flag">🇲🇾</span><span
+              class="mkt-nm">Malaysia</span><span class="mkt-badge">Performance</span></div>
+          <div class="mkt-row" aria-hidden="true"><span class="mkt-flag">🇹🇭</span><span
+              class="mkt-nm">Thailand</span><span class="mkt-badge">Performance</span></div>
+          <div class="mkt-row" aria-hidden="true"><span class="mkt-flag">🇻🇳</span><span
+              class="mkt-nm">Vietnam</span><span class="mkt-badge">Performance</span></div>
+          <div class="mkt-row" aria-hidden="true"><span class="mkt-flag">🇬🇧</span><span class="mkt-nm">United
+              Kingdom</span><span class="mkt-badge">Multi</span></div>
+          <div class="mkt-row" aria-hidden="true"><span class="mkt-flag">🇮🇳</span><span
+              class="mkt-nm">India</span><span class="mkt-badge">Multi</span></div>
+          <div class="mkt-row" aria-hidden="true"><span class="mkt-flag">🇦🇪</span><span class="mkt-nm">United Arab
+              Emirates</span><span class="mkt-badge">Multi</span></div>
+        </div>
       </div>
     </div>
   </section>
@@ -1924,10 +1956,10 @@
       <div class="rr ct-head-container">
         <div class="ct-head">Open to new<br><strong>opportunities.</strong></div>
         <p class="ct-note">Available for performance marketing roles, high-budget account management, and global
-          campaign strategy. Based in Lucknow — fully open to remote work.</p>
+          campaign strategy. Based in Lucknow. Fully open to remote work.</p>
       </div>
       <div class="rr ct-form-wrapper">
-        <form class="ct-form" action="#" method="POST">
+        <form class="ct-form" action="https://formsubmit.co/naseemyasir865@email.com" method="POST">
           <div class="ct-form-row">
             <div class="input-group">
               <label for="name">Name</label>
@@ -1966,7 +1998,8 @@
           </svg>
           Book a Call
         </a>
-        <a href="https://linkedin.com/in/mohd-yasir-naseem" target="_blank" class="btn-linkedin">
+        <a href="https://www.linkedin.com/in/mohdyasirnaseem?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
+          target="_blank" class="btn-linkedin">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path
               d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
