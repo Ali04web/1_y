@@ -1602,6 +1602,180 @@
         font-weight: 500;
       }
     }
+
+    /* ── STRATEGIES & CLIENTS ── */
+    #strategies {
+      background: var(--s1);
+      padding-top: 60px;
+    }
+
+    .st-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 60px;
+      align-items: flex-start;
+    }
+
+    /* Accordion */
+    .st-acc {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .st-item {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+    }
+
+    .st-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: none;
+      padding: 12px 0;
+      color: var(--cream);
+      transition: color 0.3s;
+    }
+
+    .st-head:hover {
+      color: var(--coral);
+    }
+
+    .st-title {
+      font-family: var(--display);
+      font-size: 1.15rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .st-title span {
+      font-family: var(--label);
+      font-size: 0.65rem;
+      color: var(--gold);
+      opacity: 0.6;
+    }
+
+    .st-icon {
+      position: relative;
+      width: 14px;
+      height: 14px;
+    }
+
+    .st-icon::before,
+    .st-icon::after {
+      content: '';
+      position: absolute;
+      background: currentColor;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .st-icon::before {
+      top: 6px; left: 0; width: 14px; height: 2px;
+    }
+
+    .st-icon::after {
+      top: 0; left: 6px; width: 2px; height: 14px;
+    }
+
+    .st-item.active .st-icon::after {
+      transform: rotate(90deg) scaleY(0);
+    }
+
+    .st-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .st-content {
+      padding: 16px 0 24px 0;
+    }
+    
+    .st-pts {
+      list-style: none;
+    }
+
+    .st-pts li {
+      font-family: var(--body);
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.8;
+      padding: 10px 0 10px 20px;
+      position: relative;
+    }
+
+    .st-pts li::before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 0.7rem;
+      top: 13px;
+    }
+
+    .st-pts li b {
+      color: var(--cream);
+      font-weight: 600;
+    }
+
+    /* Clients Grid */
+    .st-clients {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .st-client {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: none;
+    }
+
+    .st-client:hover {
+      background: var(--s2);
+      border-color: var(--coral);
+      transform: translateX(4px);
+    }
+
+    .st-client-nm {
+      font-family: var(--label);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--cream);
+    }
+
+    .st-client-arr {
+      color: var(--coral);
+      opacity: 0.5;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .st-client:hover .st-client-arr {
+      opacity: 1;
+      transform: translate(3px, -3px);
+    }
+
+    @media(max-width:960px) {
+      .st-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .st-title {
+        font-size: 1.05rem;
+      }
+    }
   </style>
 </head>
 
@@ -1914,6 +2088,127 @@
     </div>
   </section>
 
+  <!-- STRATEGIES & CLIENTS -->
+  <section id="strategies">
+    <div class="sh rr">
+      <div class="sh-left">
+        <div class="sh-idx">Impact</div>
+        <div class="sh-title">Strategies & <em>Clients</em></div>
+      </div>
+      <div class="sh-rule"></div>
+    </div>
+
+    <div class="st-grid">
+      <!-- Accordion -->
+      <div class="st-acc rr">
+        
+        <div class="st-item">
+          <div class="st-head">
+            <div class="st-title"><span>01</span> Pre-Launch: Audit & Intelligence</div>
+            <div class="st-icon"></div>
+          </div>
+          <div class="st-body">
+            <div class="st-content">
+              <ul class="st-pts">
+                <li><b>Comprehensive Auditing:</b> Deep-dive into historical data to identify "leaks" in spend and conversion bottlenecks.</li>
+                <li><b>Market & Consumer Research:</b> Analyzing local trends in diverse global markets to decide the most effective bidding strategies (tCPA vs. tROAS).</li>
+                <li><b>Landing Page UI/UX Audit:</b> Evaluating page speed and user flow to ensure the high-budget traffic converts into revenue.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="st-item">
+          <div class="st-head">
+            <div class="st-title"><span>02</span> Structural Excellence: Account & Feed</div>
+            <div class="st-icon"></div>
+          </div>
+          <div class="st-body">
+            <div class="st-content">
+              <ul class="st-pts">
+                <li><b>Product Categorization (Zombie vs. Bestsellers):</b> Segmenting the product feed to ensure "Zombie" products don't waste budget while "Bestsellers" get maximum exposure to maintain ROAS.</li>
+                <li><b>Shopping & Feed Optimization:</b> Writing keyword-rich titles and descriptions to improve organic rank in the Shopping tab.</li>
+                <li><b>Funnel-Based Campaign Structure:</b> <br><br><i>Branded:</i> Protecting brand search terms.<br><i>Prospecting:</i> Finding new users via generic and intent-based keywords.<br><i>Competitor:</i> Strategically bidding on rival terms to capture market share.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="st-item">
+          <div class="st-head">
+            <div class="st-title"><span>03</span> PMax & Creative Mastery</div>
+            <div class="st-icon"></div>
+          </div>
+          <div class="st-body">
+            <div class="st-content">
+              <ul class="st-pts">
+                <li><b>Multi-Asset Group Testing:</b> Testing 5 distinct audience signals in PMax: Affinity, In-Market, Custom (Intent), Open (Broad), and Remarketing.</li>
+                <li><b>Creative Direction:</b> Suggesting trending video and image styles and rotating ad copies regularly to avoid Ad Fatigue.</li>
+                <li><b>Signal & Theme Integration:</b> Utilizing Search Themes in PMax to provide the AI with better starting points based on consumer research.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="st-item">
+          <div class="st-head">
+            <div class="st-title"><span>04</span> Execution & Daily Optimization</div>
+            <div class="st-icon"></div>
+          </div>
+          <div class="st-body">
+            <div class="st-content">
+              <ul class="st-pts">
+                <li><b>Granular Keyword Hygiene:</b> Daily search term analysis and maintaining high Quality Scores to lower CPCs.</li>
+                <li><b>Placement Auditing:</b> Reviewing where ads appear (e.g., specific YouTube channels or apps) and excluding non-performing placements.</li>
+                <li><b>Bulk Management:</b> Using Google Ads Editor for rapid execution across massive accounts.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="st-item">
+          <div class="st-head">
+            <div class="st-title"><span>05</span> Strategy & Forecasting</div>
+            <div class="st-icon"></div>
+          </div>
+          <div class="st-body">
+            <div class="st-content">
+              <ul class="st-pts">
+                <li><b>Internal Target Alignment:</b> Crafting monthly Media Plans and Content Plans that align with client-specific revenue goals and ROI targets.</li>
+                <li><b>Funnel Strategization:</b> For new clients, starting with high-intent Search and Shopping before expanding into awareness-based Demand Gen.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Clients Links -->
+      <div class="st-clients rr" style="transition-delay: .2s">
+        <a href="https://theluxurydirect.com/" target="_blank" class="st-client">
+          <span class="st-client-nm">The Luxury Direct</span>
+          <svg class="st-client-arr" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </a>
+        <a href="https://www.uob.com.sg/" target="_blank" class="st-client">
+          <span class="st-client-nm">UOB Singapore</span>
+          <svg class="st-client-arr" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </a>
+        <a href="https://gulffruits.com/" target="_blank" class="st-client">
+          <span class="st-client-nm">Gulf Fruits</span>
+          <svg class="st-client-arr" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </a>
+        <a href="https://meiyal.in/" target="_blank" class="st-client">
+          <span class="st-client-nm">Meiyal</span>
+          <svg class="st-client-arr" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </a>
+        <a href="https://frabsmagazines.com/" target="_blank" class="st-client">
+          <span class="st-client-nm">Frabs Magazines</span>
+          <svg class="st-client-arr" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- CERTIFICATIONS -->
   <section id="certifications">
     <div class="sh rr">
@@ -2097,12 +2392,33 @@
     let mx = 0, my = 0, rx = 0, ry = 0;
     document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.left = mx + 'px'; dot.style.top = my + 'px'; });
     (function loop() { rx += (mx - rx) * 0.11; ry += (my - ry) * 0.11; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(loop); })();
-    document.querySelectorAll('a, button, input, select, textarea, .ec, .mkt-row, .cc, .nc').forEach(el => {
+    document.querySelectorAll('a, button, input, select, textarea, .ec, .mkt-row, .cc, .nc, .st-head, .st-client').forEach(el => {
       el.addEventListener('mouseenter', () => { ring.style.width = '50px'; ring.style.height = '50px'; ring.style.borderColor = 'rgba(201,169,110,0.6)'; });
       el.addEventListener('mouseleave', () => { ring.style.width = '30px'; ring.style.height = '30px'; ring.style.borderColor = 'rgba(232,96,58,0.45)'; });
     });
     const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); }); }, { threshold: 0.08 });
     document.querySelectorAll('.rr,.tli').forEach(el => obs.observe(el));
+
+    // Accordion Logic
+    document.querySelectorAll('.st-head').forEach(header => {
+      header.addEventListener('click', () => {
+        const item = header.parentElement;
+        const body = header.nextElementSibling;
+        const isOpen = item.classList.contains('active');
+        
+        // Close all
+        document.querySelectorAll('.st-item').forEach(otherItem => {
+          otherItem.classList.remove('active');
+          otherItem.querySelector('.st-body').style.maxHeight = null;
+        });
+
+        // Toggle clicked
+        if (!isOpen) {
+          item.classList.add('active');
+          body.style.maxHeight = body.scrollHeight + "px";
+        }
+      });
+    });
 
     // Theme Toggle Logic
     const themeToggles = document.querySelectorAll('.theme-toggle');
