@@ -1624,8 +1624,31 @@
     }
 
     .st-item {
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 16px;
+      border: 1px solid var(--border);
+      background: transparent;
+      border-radius: 12px;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+
+    .st-item:hover {
+      border-color: var(--border2);
+      background: rgba(240, 235, 227, 0.015);
+    }
+
+    body.light-mode .st-item:hover {
+      background: rgba(10, 9, 8, 0.02);
+    }
+
+    .st-item.active {
+      background: var(--bg);
+      border-color: var(--coral);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+      transform: translateY(-2px);
+    }
+
+    body.light-mode .st-item.active {
+      box-shadow: 0 16px 40px rgba(232, 96, 58, 0.08);
     }
 
     .st-head {
@@ -1633,9 +1656,9 @@
       justify-content: space-between;
       align-items: center;
       cursor: none;
-      padding: 12px 0;
+      padding: 24px 28px;
       color: var(--cream);
-      transition: color 0.3s;
+      transition: color 0.4s;
     }
 
     .st-head:hover {
@@ -1644,19 +1667,25 @@
 
     .st-title {
       font-family: var(--display);
-      font-size: 1.15rem;
+      font-size: 1.25rem;
       font-weight: 500;
       letter-spacing: 0.02em;
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 24px;
     }
-    
+
+    .st-item.active .st-title {
+      color: var(--coral);
+    }
+
     .st-title span {
-      font-family: var(--label);
-      font-size: 0.65rem;
+      font-family: var(--display);
+      font-size: 1.5rem;
+      font-weight: 700;
       color: var(--gold);
-      opacity: 0.6;
+      opacity: 0.8;
+      width: 32px;
     }
 
     .st-icon {
@@ -1674,11 +1703,17 @@
     }
 
     .st-icon::before {
-      top: 6px; left: 0; width: 14px; height: 2px;
+      top: 6px;
+      left: 0;
+      width: 14px;
+      height: 2px;
     }
 
     .st-icon::after {
-      top: 0; left: 6px; width: 2px; height: 14px;
+      top: 0;
+      left: 6px;
+      width: 2px;
+      height: 14px;
     }
 
     .st-item.active .st-icon::after {
@@ -1692,9 +1727,9 @@
     }
 
     .st-content {
-      padding: 16px 0 24px 0;
+      padding: 0 28px 32px 84px;
     }
-    
+
     .st-pts {
       list-style: none;
     }
@@ -1730,41 +1765,74 @@
     }
 
     .st-client {
+      position: relative;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 18px 24px;
-      background: var(--bg);
+      padding: 22px 28px;
+      background: rgba(240, 235, 227, 0.02);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border: 1px solid var(--border);
+      border-radius: 12px;
       text-decoration: none;
-      transition: all 0.3s ease;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
       cursor: none;
     }
 
+    body.light-mode .st-client {
+      background: rgba(10, 9, 8, 0.02);
+    }
+
+    .st-client::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(232, 96, 58, 0.1), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+
     .st-client:hover {
-      background: var(--s2);
-      border-color: var(--coral);
-      transform: translateX(4px);
+      border-color: rgba(232, 96, 58, 0.5);
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    body.light-mode .st-client:hover {
+      box-shadow: 0 16px 40px rgba(232, 96, 58, 0.1);
+    }
+
+    .st-client:hover::before {
+      opacity: 1;
     }
 
     .st-client-nm {
-      font-family: var(--label);
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      font-weight: 600;
+      position: relative;
+      z-index: 1;
+      font-family: var(--display);
+      font-size: 1.05rem;
+      letter-spacing: 0.05em;
+      font-weight: 500;
       color: var(--cream);
     }
 
     .st-client-arr {
-      color: var(--coral);
+      position: relative;
+      z-index: 1;
+      color: var(--gold);
       opacity: 0.5;
-      transition: opacity 0.3s, transform 0.3s;
+      transition: opacity 0.4s, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .st-client:hover .st-client-arr {
       opacity: 1;
-      transform: translate(3px, -3px);
+      transform: translate(6px, -6px) scale(1.2);
+      color: var(--coral);
     }
 
     @media(max-width:960px) {
@@ -1772,8 +1840,23 @@
         grid-template-columns: 1fr;
         gap: 48px;
       }
+
       .st-title {
-        font-size: 1.05rem;
+        font-size: 1.1rem;
+        gap: 16px;
+      }
+
+      .st-title span {
+        font-size: 1.25rem;
+        width: 24px;
+      }
+
+      .st-content {
+        padding: 0 20px 24px 60px;
+      }
+
+      .st-head {
+        padding: 20px;
       }
     }
   </style>
@@ -2046,26 +2129,27 @@
 
       <div class="mkt-marquee rr">
         <div class="mkt-marquee-inner">
-          <div class="mkt-row"><img class="mkt-flag" src="https://flagcdn.com/us.svg" alt="US"><span class="mkt-nm">United States</span><span
-              class="mkt-badge">E-Commerce</span></div>
-          <div class="mkt-row"><img class="mkt-flag" src="https://flagcdn.com/it.svg" alt="IT"><span class="mkt-nm">Italy</span><span
-              class="mkt-badge">E-Commerce</span></div>
-          <div class="mkt-row"><img class="mkt-flag" src="https://flagcdn.com/sg.svg" alt="SG"><span class="mkt-nm">Singapore</span><span
-              class="mkt-badge">Lead Gen</span></div>
-          <div class="mkt-row"><img class="mkt-flag" src="https://flagcdn.com/my.svg" alt="MY"><span class="mkt-nm">Malaysia</span><span
-              class="mkt-badge">Performance</span></div>
-          <div class="mkt-row"><img class="mkt-flag" src="https://flagcdn.com/th.svg" alt="TH"><span class="mkt-nm">Thailand</span><span
-              class="mkt-badge">Performance</span></div>
-          <div class="mkt-row"><img class="mkt-flag" src="https://flagcdn.com/vn.svg" alt="VN"><span class="mkt-nm">Vietnam</span><span
-              class="mkt-badge">Performance</span></div>
-          <div class="mkt-row"><img class="mkt-flag" src="https://flagcdn.com/gb.svg" alt="UK"><span class="mkt-nm">United Kingdom</span><span
-              class="mkt-badge">Multi</span></div>
-          <div class="mkt-row"><img class="mkt-flag" src="https://flagcdn.com/in.svg" alt="IN"><span class="mkt-nm">India</span><span
-              class="mkt-badge">Multi</span></div>
-          <div class="mkt-row"><img class="mkt-flag" src="https://flagcdn.com/ae.svg" alt="UAE"><span class="mkt-nm">United Arab Emirates</span><span
-              class="mkt-badge">Multi</span></div>
+          <div class="mkt-row"><img class="mkt-flag" src="https://flagcdn.com/us.svg" alt="US"><span
+              class="mkt-nm">United States</span><span class="mkt-badge">E-Commerce</span></div>
+          <div class="mkt-row"><img class="mkt-flag" src="https://flagcdn.com/it.svg" alt="IT"><span
+              class="mkt-nm">Italy</span><span class="mkt-badge">E-Commerce</span></div>
+          <div class="mkt-row"><img class="mkt-flag" src="https://flagcdn.com/sg.svg" alt="SG"><span
+              class="mkt-nm">Singapore</span><span class="mkt-badge">Lead Gen</span></div>
+          <div class="mkt-row"><img class="mkt-flag" src="https://flagcdn.com/my.svg" alt="MY"><span
+              class="mkt-nm">Malaysia</span><span class="mkt-badge">Performance</span></div>
+          <div class="mkt-row"><img class="mkt-flag" src="https://flagcdn.com/th.svg" alt="TH"><span
+              class="mkt-nm">Thailand</span><span class="mkt-badge">Performance</span></div>
+          <div class="mkt-row"><img class="mkt-flag" src="https://flagcdn.com/vn.svg" alt="VN"><span
+              class="mkt-nm">Vietnam</span><span class="mkt-badge">Performance</span></div>
+          <div class="mkt-row"><img class="mkt-flag" src="https://flagcdn.com/gb.svg" alt="UK"><span
+              class="mkt-nm">United Kingdom</span><span class="mkt-badge">Multi</span></div>
+          <div class="mkt-row"><img class="mkt-flag" src="https://flagcdn.com/in.svg" alt="IN"><span
+              class="mkt-nm">India</span><span class="mkt-badge">Multi</span></div>
+          <div class="mkt-row"><img class="mkt-flag" src="https://flagcdn.com/ae.svg" alt="UAE"><span
+              class="mkt-nm">United Arab Emirates</span><span class="mkt-badge">Multi</span></div>
           <!-- duplicate block for infinite scroll -->
-          <div class="mkt-row" aria-hidden="true"><img class="mkt-flag" src="https://flagcdn.com/us.svg" alt="US"><span class="mkt-nm">United
+          <div class="mkt-row" aria-hidden="true"><img class="mkt-flag" src="https://flagcdn.com/us.svg" alt="US"><span
+              class="mkt-nm">United
               States</span><span class="mkt-badge">E-Commerce</span></div>
           <div class="mkt-row" aria-hidden="true"><img class="mkt-flag" src="https://flagcdn.com/it.svg" alt="IT"><span
               class="mkt-nm">Italy</span><span class="mkt-badge">E-Commerce</span></div>
@@ -2077,11 +2161,13 @@
               class="mkt-nm">Thailand</span><span class="mkt-badge">Performance</span></div>
           <div class="mkt-row" aria-hidden="true"><img class="mkt-flag" src="https://flagcdn.com/vn.svg" alt="VN"><span
               class="mkt-nm">Vietnam</span><span class="mkt-badge">Performance</span></div>
-          <div class="mkt-row" aria-hidden="true"><img class="mkt-flag" src="https://flagcdn.com/gb.svg" alt="UK"><span class="mkt-nm">United
+          <div class="mkt-row" aria-hidden="true"><img class="mkt-flag" src="https://flagcdn.com/gb.svg" alt="UK"><span
+              class="mkt-nm">United
               Kingdom</span><span class="mkt-badge">Multi</span></div>
           <div class="mkt-row" aria-hidden="true"><img class="mkt-flag" src="https://flagcdn.com/in.svg" alt="IN"><span
               class="mkt-nm">India</span><span class="mkt-badge">Multi</span></div>
-          <div class="mkt-row" aria-hidden="true"><img class="mkt-flag" src="https://flagcdn.com/ae.svg" alt="UAE"><span class="mkt-nm">United Arab
+          <div class="mkt-row" aria-hidden="true"><img class="mkt-flag" src="https://flagcdn.com/ae.svg" alt="UAE"><span
+              class="mkt-nm">United Arab
               Emirates</span><span class="mkt-badge">Multi</span></div>
         </div>
       </div>
@@ -2101,7 +2187,7 @@
     <div class="st-grid">
       <!-- Accordion -->
       <div class="st-acc rr">
-        
+
         <div class="st-item">
           <div class="st-head">
             <div class="st-title"><span>01</span> Pre-Launch: Audit & Intelligence</div>
@@ -2110,9 +2196,12 @@
           <div class="st-body">
             <div class="st-content">
               <ul class="st-pts">
-                <li><b>Comprehensive Auditing:</b> Deep-dive into historical data to identify "leaks" in spend and conversion bottlenecks.</li>
-                <li><b>Market & Consumer Research:</b> Analyzing local trends in diverse global markets to decide the most effective bidding strategies (tCPA vs. tROAS).</li>
-                <li><b>Landing Page UI/UX Audit:</b> Evaluating page speed and user flow to ensure the high-budget traffic converts into revenue.</li>
+                <li><b>Comprehensive Auditing:</b> Deep-dive into historical data to identify "leaks" in spend and
+                  conversion bottlenecks.</li>
+                <li><b>Market & Consumer Research:</b> Analyzing local trends in diverse global markets to decide the
+                  most effective bidding strategies (tCPA vs. tROAS).</li>
+                <li><b>Landing Page UI/UX Audit:</b> Evaluating page speed and user flow to ensure the high-budget
+                  traffic converts into revenue.</li>
               </ul>
             </div>
           </div>
@@ -2126,9 +2215,13 @@
           <div class="st-body">
             <div class="st-content">
               <ul class="st-pts">
-                <li><b>Product Categorization (Zombie vs. Bestsellers):</b> Segmenting the product feed to ensure "Zombie" products don't waste budget while "Bestsellers" get maximum exposure to maintain ROAS.</li>
-                <li><b>Shopping & Feed Optimization:</b> Writing keyword-rich titles and descriptions to improve organic rank in the Shopping tab.</li>
-                <li><b>Funnel-Based Campaign Structure:</b> <br><br><i>Branded:</i> Protecting brand search terms.<br><i>Prospecting:</i> Finding new users via generic and intent-based keywords.<br><i>Competitor:</i> Strategically bidding on rival terms to capture market share.</li>
+                <li><b>Product Categorization (Zombie vs. Bestsellers):</b> Segmenting the product feed to ensure
+                  "Zombie" products don't waste budget while "Bestsellers" get maximum exposure to maintain ROAS.</li>
+                <li><b>Shopping & Feed Optimization:</b> Writing keyword-rich titles and descriptions to improve organic
+                  rank in the Shopping tab.</li>
+                <li><b>Funnel-Based Campaign Structure:</b> <br><br><i>Branded:</i> Protecting brand search
+                  terms.<br><i>Prospecting:</i> Finding new users via generic and intent-based
+                  keywords.<br><i>Competitor:</i> Strategically bidding on rival terms to capture market share.</li>
               </ul>
             </div>
           </div>
@@ -2142,9 +2235,12 @@
           <div class="st-body">
             <div class="st-content">
               <ul class="st-pts">
-                <li><b>Multi-Asset Group Testing:</b> Testing 5 distinct audience signals in PMax: Affinity, In-Market, Custom (Intent), Open (Broad), and Remarketing.</li>
-                <li><b>Creative Direction:</b> Suggesting trending video and image styles and rotating ad copies regularly to avoid Ad Fatigue.</li>
-                <li><b>Signal & Theme Integration:</b> Utilizing Search Themes in PMax to provide the AI with better starting points based on consumer research.</li>
+                <li><b>Multi-Asset Group Testing:</b> Testing 5 distinct audience signals in PMax: Affinity, In-Market,
+                  Custom (Intent), Open (Broad), and Remarketing.</li>
+                <li><b>Creative Direction:</b> Suggesting trending video and image styles and rotating ad copies
+                  regularly to avoid Ad Fatigue.</li>
+                <li><b>Signal & Theme Integration:</b> Utilizing Search Themes in PMax to provide the AI with better
+                  starting points based on consumer research.</li>
               </ul>
             </div>
           </div>
@@ -2158,8 +2254,10 @@
           <div class="st-body">
             <div class="st-content">
               <ul class="st-pts">
-                <li><b>Granular Keyword Hygiene:</b> Daily search term analysis and maintaining high Quality Scores to lower CPCs.</li>
-                <li><b>Placement Auditing:</b> Reviewing where ads appear (e.g., specific YouTube channels or apps) and excluding non-performing placements.</li>
+                <li><b>Granular Keyword Hygiene:</b> Daily search term analysis and maintaining high Quality Scores to
+                  lower CPCs.</li>
+                <li><b>Placement Auditing:</b> Reviewing where ads appear (e.g., specific YouTube channels or apps) and
+                  excluding non-performing placements.</li>
                 <li><b>Bulk Management:</b> Using Google Ads Editor for rapid execution across massive accounts.</li>
               </ul>
             </div>
@@ -2174,8 +2272,10 @@
           <div class="st-body">
             <div class="st-content">
               <ul class="st-pts">
-                <li><b>Internal Target Alignment:</b> Crafting monthly Media Plans and Content Plans that align with client-specific revenue goals and ROI targets.</li>
-                <li><b>Funnel Strategization:</b> For new clients, starting with high-intent Search and Shopping before expanding into awareness-based Demand Gen.</li>
+                <li><b>Internal Target Alignment:</b> Crafting monthly Media Plans and Content Plans that align with
+                  client-specific revenue goals and ROI targets.</li>
+                <li><b>Funnel Strategization:</b> For new clients, starting with high-intent Search and Shopping before
+                  expanding into awareness-based Demand Gen.</li>
               </ul>
             </div>
           </div>
@@ -2187,23 +2287,43 @@
       <div class="st-clients rr" style="transition-delay: .2s">
         <a href="https://theluxurydirect.com/" target="_blank" class="st-client">
           <span class="st-client-nm">The Luxury Direct</span>
-          <svg class="st-client-arr" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          <svg class="st-client-arr" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
         </a>
         <a href="https://www.uob.com.sg/" target="_blank" class="st-client">
           <span class="st-client-nm">UOB Singapore</span>
-          <svg class="st-client-arr" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          <svg class="st-client-arr" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
         </a>
         <a href="https://gulffruits.com/" target="_blank" class="st-client">
           <span class="st-client-nm">Gulf Fruits</span>
-          <svg class="st-client-arr" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          <svg class="st-client-arr" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
         </a>
         <a href="https://meiyal.in/" target="_blank" class="st-client">
           <span class="st-client-nm">Meiyal</span>
-          <svg class="st-client-arr" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          <svg class="st-client-arr" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
         </a>
         <a href="https://frabsmagazines.com/" target="_blank" class="st-client">
           <span class="st-client-nm">Frabs Magazines</span>
-          <svg class="st-client-arr" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          <svg class="st-client-arr" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
         </a>
       </div>
     </div>
@@ -2405,7 +2525,7 @@
         const item = header.parentElement;
         const body = header.nextElementSibling;
         const isOpen = item.classList.contains('active');
-        
+
         // Close all
         document.querySelectorAll('.st-item').forEach(otherItem => {
           otherItem.classList.remove('active');
