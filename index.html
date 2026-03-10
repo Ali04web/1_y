@@ -506,8 +506,37 @@
     .hb span {
       display: block;
       color: var(--gold);
-      margin-bottom: 3px;
+      margin-bottom: 6px;
       font-weight: 600;
+      letter-spacing: 0.15em;
+    }
+
+    .hb-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      line-height: 1.6;
+    }
+
+    .hb-tool {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hb-icon {
+      width: 14px;
+      height: 14px;
+      object-fit: contain;
+      border-radius: 2px;
+      filter: grayscale(0.2) contrast(1.2);
+    }
+
+    .hb-dot {
+      color: var(--coral);
+      opacity: 0.5;
+      margin: 0 2px;
     }
 
     @keyframes fup {
@@ -1822,9 +1851,31 @@
       opacity: 1;
     }
 
-    .st-client-nm {
+    .st-client-left {
       position: relative;
       z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .st-client-logo {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      object-fit: contain;
+      background: #fff;
+      padding: 2px;
+      border: 1px solid var(--border);
+      transition: border-color 0.4s, transform 0.4s;
+    }
+
+    .st-client:hover .st-client-logo {
+      border-color: var(--coral);
+      transform: scale(1.1) rotate(-5deg);
+    }
+
+    .st-client-nm {
       font-family: var(--display);
       font-size: 1.05rem;
       letter-spacing: 0.05em;
@@ -1950,7 +2001,18 @@
       </div>
     </div>
     <div class="h-bar">
-      <div class="hb"><span>Stack</span>Google Ads · GA4 · GTM</div>
+      <div class="hb"><span>Stack</span>
+        <div class="hb-content">
+          <div class="hb-tool"><img src="https://www.google.com/s2/favicons?domain=ads.google.com&sz=64"
+              alt="Google Ads" class="hb-icon"> Google Ads</div><span class="hb-dot">·</span>
+          <div class="hb-tool"><img src="https://www.google.com/s2/favicons?domain=business.facebook.com&sz=64"
+              alt="Meta Ads" class="hb-icon"> Meta Ads</div><span class="hb-dot">·</span>
+          <div class="hb-tool"><img src="https://www.google.com/s2/favicons?domain=analytics.google.com&sz=64" alt="GA4"
+              class="hb-icon"> GA4</div><span class="hb-dot">·</span>
+          <div class="hb-tool"><img src="https://www.google.com/s2/favicons?domain=tagmanager.google.com&sz=64"
+              alt="GTM" class="hb-icon"> GTM</div>
+        </div>
+      </div>
       <div class="hb"><span>Campaigns</span>Search · PMax · Demand Gen</div>
       <div class="hb"><span>Verticals</span>E-Commerce · Lead Gen</div>
       <div class="hb"><span>Location</span>Lucknow, IN · Remote ✓</div>
@@ -2304,7 +2366,11 @@
       <div class="st-clients rr" style="transition-delay: .2s">
         <div class="st-mob-title">Featured Clients</div>
         <a href="https://theluxurydirect.com/" target="_blank" class="st-client">
-          <span class="st-client-nm">The Luxury Direct</span>
+          <div class="st-client-left">
+            <img src="https://www.google.com/s2/favicons?domain=theluxurydirect.com&sz=128" alt="The Luxury Direct Logo"
+              class="st-client-logo">
+            <span class="st-client-nm">The Luxury Direct</span>
+          </div>
           <svg class="st-client-arr" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="7" y1="17" x2="17" y2="7"></line>
@@ -2312,7 +2378,11 @@
           </svg>
         </a>
         <a href="https://www.uob.com.sg/" target="_blank" class="st-client">
-          <span class="st-client-nm">UOB Singapore</span>
+          <div class="st-client-left">
+            <img src="https://www.google.com/s2/favicons?domain=uob.com.sg&sz=128" alt="UOB Singapore Logo"
+              class="st-client-logo">
+            <span class="st-client-nm">UOB Singapore</span>
+          </div>
           <svg class="st-client-arr" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="7" y1="17" x2="17" y2="7"></line>
@@ -2320,7 +2390,11 @@
           </svg>
         </a>
         <a href="https://gulffruits.com/" target="_blank" class="st-client">
-          <span class="st-client-nm">Gulf Fruits</span>
+          <div class="st-client-left">
+            <img src="https://www.google.com/s2/favicons?domain=gulffruits.com&sz=128" alt="Gulf Fruits Logo"
+              class="st-client-logo">
+            <span class="st-client-nm">Gulf Fruits</span>
+          </div>
           <svg class="st-client-arr" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="7" y1="17" x2="17" y2="7"></line>
@@ -2328,7 +2402,11 @@
           </svg>
         </a>
         <a href="https://meiyal.in/" target="_blank" class="st-client">
-          <span class="st-client-nm">Meiyal</span>
+          <div class="st-client-left">
+            <img src="https://www.google.com/s2/favicons?domain=meiyal.in&sz=128" alt="Meiyal Logo"
+              class="st-client-logo">
+            <span class="st-client-nm">Meiyal</span>
+          </div>
           <svg class="st-client-arr" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="7" y1="17" x2="17" y2="7"></line>
@@ -2336,7 +2414,11 @@
           </svg>
         </a>
         <a href="https://frabsmagazines.com/" target="_blank" class="st-client">
-          <span class="st-client-nm">Frabs Magazines</span>
+          <div class="st-client-left">
+            <img src="https://www.google.com/s2/favicons?domain=frabsmagazines.com&sz=128" alt="Frabs Magazines Logo"
+              class="st-client-logo">
+            <span class="st-client-nm">Frabs Magazines</span>
+          </div>
           <svg class="st-client-arr" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="7" y1="17" x2="17" y2="7"></line>
