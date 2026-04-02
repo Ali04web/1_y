@@ -73,37 +73,12 @@
       overflow-x: hidden;
       width: 100%;
       max-width: 100%;
-      cursor: none;
       -webkit-font-smoothing: antialiased;
     }
 
-    * {
-      cursor: none;
-    }
 
-    /* ── CURSOR ── */
-    #dot {
-      width: 7px;
-      height: 7px;
-      background: var(--coral);
-      border-radius: 50%;
-      position: fixed;
-      z-index: 9999;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-    }
 
-    #ring {
-      width: 30px;
-      height: 30px;
-      border: 1px solid rgba(232, 96, 58, 0.45);
-      border-radius: 50%;
-      position: fixed;
-      z-index: 9998;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      transition: width .18s, height .18s, border-color .18s;
-    }
+
 
     /* ── BLOBS ── */
     .blobs {
@@ -193,7 +168,7 @@
       align-items: center;
       justify-content: center;
       transition: color 0.3s;
-      cursor: none;
+      cursor: pointer;
     }
 
     .theme-toggle:hover {
@@ -663,7 +638,6 @@
       position: relative;
       overflow: hidden;
       transition: background .3s;
-      cursor: default;
     }
 
     .ec:hover {
@@ -866,7 +840,6 @@
       padding: 52px 36px;
       text-align: center;
       transition: background .3s;
-      cursor: default;
     }
 
     .nc:hover {
@@ -944,7 +917,6 @@
       font-size: 0.95rem;
       color: var(--muted);
       transition: all .2s;
-      cursor: default;
     }
 
     .mkt-row:hover {
@@ -1026,7 +998,6 @@
       position: relative;
       overflow: hidden;
       transition: background .25s;
-      cursor: default;
     }
 
     .cc:hover {
@@ -1345,15 +1316,6 @@
 
     /* ── RESPONSIVE ── */
     @media(max-width:960px) {
-      * {
-        cursor: auto !important;
-      }
-
-      #dot,
-      #ring {
-        display: none !important;
-      }
-
       nav {
         padding: 0 20px;
         height: 54px;
@@ -1684,7 +1646,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      cursor: none;
+      cursor: pointer;
       padding: 0 28px;
       min-height: 86px;
       color: var(--cream);
@@ -1818,7 +1780,7 @@
       border-radius: 12px;
       text-decoration: none;
       transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      cursor: none;
+      cursor: pointer;
     }
 
     body.light-mode .st-client {
@@ -1932,8 +1894,7 @@
 
 <body>
 
-  <div id="dot"></div>
-  <div id="ring"></div>
+
   <div class="blobs">
     <div class="bl bl1"></div>
     <div class="bl bl2"></div>
@@ -2608,14 +2569,7 @@
   </div>
 
   <script>
-    const dot = document.getElementById('dot'), ring = document.getElementById('ring');
-    let mx = 0, my = 0, rx = 0, ry = 0;
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.left = mx + 'px'; dot.style.top = my + 'px'; });
-    (function loop() { rx += (mx - rx) * 0.11; ry += (my - ry) * 0.11; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(loop); })();
-    document.querySelectorAll('a, button, input, select, textarea, .ec, .mkt-row, .cc, .nc, .st-head, .st-client').forEach(el => {
-      el.addEventListener('mouseenter', () => { ring.style.width = '50px'; ring.style.height = '50px'; ring.style.borderColor = 'rgba(201,169,110,0.6)'; });
-      el.addEventListener('mouseleave', () => { ring.style.width = '30px'; ring.style.height = '30px'; ring.style.borderColor = 'rgba(232,96,58,0.45)'; });
-    });
+
     const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); }); }, { threshold: 0.08 });
     document.querySelectorAll('.rr,.tli').forEach(el => obs.observe(el));
 
@@ -2655,9 +2609,7 @@
         isLightMode = document.body.classList.contains('light-mode');
         localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
 
-        // Animate the ring on click
-        ring.style.transform = `translate(-50%, -50%) scale(1.5)`;
-        setTimeout(() => ring.style.transform = `translate(-50%, -50%) scale(1)`, 150);
+
       });
     });
 
